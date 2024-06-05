@@ -14,9 +14,6 @@
                             <i class="fa-sharp fa-solid fa-rectangle-list fa-flip-vertical fa-2xl" style="color: #24a0ff;"></i>
                         </div>
                         <div class="text-right">
-                            <div class="justify-end text-md mr-20">
-                                Total:
-                            </div>
                             <p class="text-4xl">12</p>
                             <p>Programs</p>
                         </div>
@@ -26,9 +23,6 @@
                             <i class="fa-solid fa-building-user fa-2xl" style="color: #ee2f2f;"></i>
                         </div>
                         <div class="text-right">
-                            <div class="justify-end text-md mr-20">
-                                Total:
-                            </div>
                             <p class="text-4xl">6</p>
                             <p>Departments</p>
                         </div>
@@ -38,9 +32,6 @@
                             <i class="fa-solid fa-folder-open fa-2xl" style="color: #00b825;"></i>
                         </div>
                         <div class="text-right">
-                            <div class="justify-end text-md mr-20">
-                                Total:
-                            </div>
                             <p class="text-4xl">12</p>
                             <p>Courses</p>
                         </div>
@@ -50,9 +41,6 @@
                             <i class="fa-solid fa-user-group fa-2xl" style="color: #ef8915;"></i>
                         </div>
                         <div class="text-right">
-                            <div class="justify-end text-md mr-20">
-                                Total:
-                            </div>
                             <p class="text-4xl">34</p>
                             <p>Instructor</p>
                         </div>
@@ -62,9 +50,6 @@
                             <i class="fa-solid fa-user-group fa-2xl" style="color: #ef8915;"></i>
                         </div>
                         <div class="text-right">
-                            <div class="justify-end text-md mr-20">
-                                Total:
-                            </div>
                             <p class="text-4xl">1,856</p>
                             <p>Students</p>
                         </div>
