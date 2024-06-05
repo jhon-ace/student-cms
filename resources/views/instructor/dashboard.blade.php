@@ -1,13 +1,13 @@
-<x-admin-layout>
+<x-instructor-layout>
 
     <x-slot name="title">
-        {{ __('Admin Dashboard') }}
+        {{ __('Instructor Dashboard') }}
     </x-slot>
 
 <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-slate-50 text-black dark:text-white">
     <div class="h-full mt-10 ml-14 mb-10 md:ml-48 ">
         <div class="max-w-full mx-auto  sm:px-10 md:px-12 lg:px-10 xl:px-10 ">
-            <div class="text-gray-500 ml-5 text-md">Admin / Dashboard</div>
+            <div class="text-gray-500 ml-5 text-md">Faculty / Dashboard</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
                     <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
                         <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
@@ -66,4 +66,4 @@
         </div>
     </div>
 </div>
-</x-admin-layout>
+</x-instructor-layout>

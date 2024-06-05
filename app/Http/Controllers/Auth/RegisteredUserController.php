@@ -33,18 +33,35 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_type' => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_type' => $request->user_type,
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // return redirect(route('admin.dashboard', absolute: false));
+
+        switch ($user->user_type) {
+            case 'admin':
+                return redirect(route('admin.dashboard', [], false));
+                break;
+            case 'instructor':
+                return redirect(route('instructor.dashboard', [], false));
+                break;
+            case 'student':
+                return redirect(route('student.dashboard', [], false));
+                break;
+            default:
+                // Handle default case if necessary
+                return redirect(route('/', [], false));
+        }
     }
 }

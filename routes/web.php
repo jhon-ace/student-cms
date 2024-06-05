@@ -1,28 +1,27 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\checkUserType;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('student.dashboard');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
-
-//admin routes
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// admin routes
+Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
+    Route::get('admin/dashboard', function () {  return view('admin.dashboard'); })->name('admin.dashboard');
+    Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin_profile.edit');
+    Route::patch('admin/profile', [ProfileController::class, 'update'])->name('admin_profile.update');
+    Route::delete('admin/profile', [ProfileController::class, 'destroy'])->name('admin_profile.destroy');
 });
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//instructor routes
+Route::middleware(['auth', 'checkUserType:instructor'])->group(function () {
+    Route::get('instructor/dashboard', function () {  return view('instructor.dashboard'); })->name('instructor.dashboard');
+    Route::get('instructor/profile', [ProfileController::class, 'edit'])->name('instructor_profile.edit');
+    Route::patch('instructor/profile', [ProfileController::class, 'update'])->name('instructor_profile.update');
+    Route::delete('instructor/profile', [ProfileController::class, 'destroy'])->name('instructor_profile.destroy');
 });
 
 require __DIR__.'/auth.php';

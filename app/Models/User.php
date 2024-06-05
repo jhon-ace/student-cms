@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type',
     ];
 
     /**
@@ -44,4 +45,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function isUserType(string $type)
+    {
+        return $this->user_type === $type;
+    }
+
+    // public function isAdmin()
+    // {
+    //     return $this->user_type === 'admin';
+    // }
+
+    // public function isInstructor()
+    // {
+    //     return $this->user_type === 'instructor';
+    // }
+    // public function isStudent()
+    // {
+    //     return $this->user_type === 'student';
+    // }
 }

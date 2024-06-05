@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -27,8 +28,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(route('admin.dashboard', absolute: false));
+        
+        $user = $request->user();
+        
+        if ($user->isUserType('instructor')) {
+            return redirect()->route('instructor.dashboard');
+        }
+        
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -37,7 +44,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
+        Session::flush();
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

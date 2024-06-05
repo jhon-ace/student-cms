@@ -16,6 +16,9 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- User Type -->
+            <x-user-type-dropdown :selected="old('user_type')" />
+            
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

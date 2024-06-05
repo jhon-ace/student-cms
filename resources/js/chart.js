@@ -6,7 +6,7 @@ var ctx = document.getElementById('enrolleesChart').getContext('2d');
             labels: ['2021-2022', '2022-2023', '2023-2024', '2024-2025'],
             datasets: [{
                 label: 'Numbers of Enrolees',
-                data: [1200, 1489, 2000, 0],
+                data: [1200, 1100, 2000, 0],
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 2,

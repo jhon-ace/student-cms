@@ -11,7 +11,18 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        
+        // $middleware->alias(['admin' => \App\Http\Middleware\AdminMiddleware::class]);
+
+        $middleware->alias([
+            'checkUserType' => \App\Http\Middleware\checkUserTypeMiddleware::class,
+            // 'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            // 'instructor' => \App\Http\Middleware\InstructorMiddleware::class,
+            // 'student' => \App\Http\Middleware\StudentMiddleware::class,
+
+        ]);
+
+        $middleware->append(\App\Http\Middleware\NoCacheMiddleware::class,);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
