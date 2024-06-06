@@ -23,14 +23,14 @@ class ProfileController extends Controller
         $user = $request->user();
 
         if ($user->isUserType('admin')) {
-            // Admin specific logic
+
             $view = 'profile/edit';
         }
         else if ($user->isUserType('instructor')) {
-            // Instructor specific logic
+
             $view = 'profile.edit';
         } else {
-            // Student specific logic
+
             $view = 'profile.edit';
         }
 
@@ -45,7 +45,21 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        
+        $user = $request->user();
+
+        if ($user->isUserType('admin')) {
+            $redirectRoute = 'admin_profile.edit';
+            $message = "Admin profile updated successfully!";
+        } else if ($user->isUserType('instructor')) {
+            $redirectRoute = 'instructor_profile.edit';
+            $message = "Student profile updated successfully!";
+        } else {
+            $redirectRoute = 'instructor_profile.edit';
+            $message = "Instructor profile updated successfully!";
+        }
+
+        $user->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -53,7 +67,9 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route($redirectRoute)->with('status', $message);
+
+
     }
 
     /**

@@ -13,7 +13,11 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('admin_profile.update') }}" class="mt-6 space-y-6">
+    <form   method="post" 
+            action="{{ 
+                        (auth()->user()->isUserType('admin') ? route('admin_profile.update') : 
+                        (auth()->user()->isUserType('instructor') ? route('instructor_profile.update') : '#'))
+                    }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 

@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use App\Http\Middleware\checkUserType;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
-    return view('student.dashboard');
+    return view('auth.login');
 });
 
 // admin routes
@@ -14,6 +16,7 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
     Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin_profile.edit');
     Route::patch('admin/profile', [ProfileController::class, 'update'])->name('admin_profile.update');
     Route::delete('admin/profile', [ProfileController::class, 'destroy'])->name('admin_profile.destroy');
+    Route::get('admin/program', [ProgramController::class, 'index'])->name('admin.program.index');
 });
 
 //instructor routes
