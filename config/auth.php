@@ -69,6 +69,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+            // Other service providers...
+            App\Providers\LivewireServiceProvider::class,
+
     ],
 
     /*

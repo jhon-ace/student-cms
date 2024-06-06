@@ -17,6 +17,7 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
     Route::patch('admin/profile', [ProfileController::class, 'update'])->name('admin_profile.update');
     Route::delete('admin/profile', [ProfileController::class, 'destroy'])->name('admin_profile.destroy');
     Route::get('admin/program', [ProgramController::class, 'index'])->name('admin.program.index');
+    
 });
 
 //instructor routes

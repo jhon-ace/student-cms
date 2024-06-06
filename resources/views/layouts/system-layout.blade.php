@@ -16,12 +16,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        @livewireStyles
-
+        @livewireStyles 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+ 
         <div class="min-h-screen ">
             @include('layouts.side-bar-navigation')
 
@@ -29,11 +29,11 @@
                 {{ $slot }}
             </main>
         </div>
-        
-        
+
         @include('components.footer')
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        @livewireScripts
         
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        @livewireScripts
     </body>
 </html>
