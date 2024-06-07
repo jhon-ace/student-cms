@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProgramStoreRequest;
+use App\Http\Requests\ProgramUpdateRequest;
 
 class ProgramController extends Controller
 {
@@ -18,25 +19,28 @@ class ProgramController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Program $program)
     {
-        //
+        return view('admin.program.create', compact('program'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProgramStoreRequest $request)
     {
-        //
+        Program::create($request->validated());
+           
+        return redirect()->route('program.index')
+                         ->with('success', 'Program created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Program $program)
+    public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -44,21 +48,24 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        return view('admin.program.edit', compact('program'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Program $program)
+    public function update(ProgramUpdateRequest $request, Program $program)
     {
-        //
+        $program->update($request->validated());
+          
+        return redirect()->route('program.index')
+                        ->with('success','Program updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Program $program)
+    public function destroy(string $id)
     {
         //
     }

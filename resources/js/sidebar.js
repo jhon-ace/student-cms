@@ -33,17 +33,17 @@
 // });
 
 // resources/js/sidebar.js
-window.toggleDropdown = function(event) {
-    event.stopPropagation();
-    let dropdown = event.currentTarget.nextElementSibling;
-    dropdown.classList.toggle('hidden');
-}
+// window.toggleDropdown = function(event) {
+//     event.stopPropagation();
+//     let dropdown = event.currentTarget.nextElementSibling;
+//     dropdown.classList.toggle('hidden');
+// }
 
-document.addEventListener('click', function(event) {
-    let dropdowns = document.querySelectorAll('.dropdown-menu');
-    dropdowns.forEach(function(dropdown) {
-        if (!dropdown.classList.contains('hidden')) {
-            dropdown.classList.add('hidden');
-        }
-    });
-});
+// document.addEventListener('click', function(event) {
+//     let dropdowns = document.querySelectorAll('.dropdown-menu');
+//     dropdowns.forEach(function(dropdown) {
+//         if (!dropdown.classList.contains('hidden')) {
+//             dropdown.classList.add('hidden');
+//         }
+//     });
+// });

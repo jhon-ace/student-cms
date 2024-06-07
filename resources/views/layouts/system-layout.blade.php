@@ -19,6 +19,7 @@
         @livewireStyles 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+       
     </head>
     <body class="font-sans antialiased">
  
@@ -35,5 +36,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         @livewireScripts
+
+
     </body>
 </html>

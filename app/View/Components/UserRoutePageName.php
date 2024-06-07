@@ -33,7 +33,8 @@ class UserRoutePageName extends Component
                 'admin.dashboard' => __('Admin Dashboard'),
                 'admin.program.index' => __('Manage Program'),
                 'admin_profile.edit' => __('Admin Profile'),
-                'settings' => __('Admin Settings'),
+                'program.create' => __('Add Program'),
+                'program.edit' => __('Edit Program'),
             ],
             'instructor' => [
                 'instructor.dashboard' => __('Instructor Dashboard'),

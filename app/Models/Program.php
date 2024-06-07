@@ -13,6 +13,7 @@ class Program extends Model
     protected $fillable = [
         'program_abbreviation',
         'program_description',
+        'status',
     ];
 
     
