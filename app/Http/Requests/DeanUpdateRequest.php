@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ProgramStoreRequest extends FormRequest
+class DeanUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,16 +30,21 @@ class ProgramStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_abbreviation' => ['required', 'string', 'max:255'],
-            'program_description' => ['required', 'string', 'max:255', 'unique:programs,program_description'],
-            'status' => ['required', 'string', 'max:255']
+            'dean_fullname' => ['required', 'string', 'max:255'],
+            'dean_status' => ['required', 'string', 'max:255'],
+            'department_id' => ['sometimes', 'required', 'exists:departments,id'],
         ];
     }
 
+    /**
+     * Get the custom messages for validator errors.
+     *
+     * @return array
+     */
     public function messages(): array
     {
         return [
-            'program_description.unique' => 'The program has already been registered.',
+            'department_id.exists' => 'The selected department is invalid.',
         ];
     }
 }

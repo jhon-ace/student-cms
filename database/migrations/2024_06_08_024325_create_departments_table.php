@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('department_name');
             $table->string('department_description');
-            $table->string('department_dean');
             $table->timestamps();
         });
     }

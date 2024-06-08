@@ -30,8 +30,14 @@ class DepartmentStoreRequest extends FormRequest
     {
         return [
             'department_name' => ['required', 'string', 'max:255', 'unique:departments,department_name'],
-            'department_description' => ['required', 'string', 'max:255'],
-            'department_dean' => ['required', 'string'],
+            'department_description' => ['required', 'string', 'max:255']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'department_name.unique' => 'The department name is already registered.',
         ];
     }
 }

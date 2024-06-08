@@ -16,24 +16,24 @@
 
                                 <div class="mb-4">
                                     <label for="program_abbreviation" class="block text-gray-700 text-md font-bold mb-2">Program Abbreviation:</label>
-                                    <input type="text" name="program_abbreviation" id="program_abbreviation" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <input type="text" name="program_abbreviation" id="program_abbreviation" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autofocus>
                                     <x-input-error :messages="$errors->get('program_abbreviation')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700 text-md font-bold mb-2">Program Description:</label>
                                     <input type="text" name="program_description" id="name" value="{{ old('program_description', $program->program_description) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <x-input-error :messages="$errors->get('program_description')" class="mt-2" />
                                 </div>
                                 <div class="mt-4">
                                     <label for="status" class="block text-gray-700 text-md font-bold mb-2">Status:</label>
                                     <select id="status" name="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="status">
-                                        @if($program->status)
+                                        @if($program->status === 'Offered')
                                             <option value="{{ $program->status }}" selected>{{ $program->status }}</option>
+                                            <option value="Not yet offered">Not yet offered</option>
                                         @else
-                                            <option value="" selected>Select status</option>
-                                            <option value="Offered" selected>Offered</option>
+                                            <option value="{{ $program->status }}" selected>{{ $program->status }}</option>
+                                            <option value="Offered">Offered</option>
                                         @endif
-                                        <option value="Offered">Offered</option>
-                                        <option value="Not yet offered">Not yet offered</option>
                                     </select>
                                 </div>
                                 <div class="flex  mb-4 mt-5 justify-center">

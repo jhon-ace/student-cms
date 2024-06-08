@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DeanController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -30,6 +31,13 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'store' => 'department.store',
         'edit' => 'department.edit',
         'update' => 'department.update'
+    ]);
+    Route::resource('dean', DeanController::class)->names([
+        'index' => 'dean.index',
+        'create' => 'dean.create',
+        'store' => 'dean.store',
+        'edit' => 'dean.edit',
+        'update' => 'dean.update'
     ]);
     
 });

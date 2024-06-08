@@ -34,7 +34,6 @@ class DepartmentShowTable extends Component
     {
         $departments = Department::where('department_name', 'like', '%' . $this->search . '%')
             ->orWhere('department_description', 'like', '%' . $this->search . '%')
-            ->orWhere('department_dean', 'like', '%' . $this->search . '%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
 

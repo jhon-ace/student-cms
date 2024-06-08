@@ -31,14 +31,21 @@ class ProgramUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_abbreviation' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('programs', 'program_abbreviation')->ignore($this->program->id),
-            ],
-            'program_description' => ['required', 'string', 'max:255'],
+            'program_abbreviation' => ['required','string','max:255'],
+            'program_description' => ['required', 
+            'string', 
+            'max:255', 
+            Rule::unique('programs', 'program_description')->ignore($this->program->id)],
             'status' => ['required', 'string', 'max:255']
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'program_description.unique' => 'The program has already been registered.',
+        ];
+    }
+
+    
 }

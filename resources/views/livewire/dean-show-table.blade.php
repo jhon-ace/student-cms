@@ -10,27 +10,32 @@
             {{ session('info') }}
         </x-info-message>
     @endif
+    @if (session('error'))
+        <x-error-message>
+            {{ session('error') }}
+        </x-error-message>
+    @endif
     <div class="flex justify-between mb-4">
-        <a href="{{ route('program.create') }}">
+        <a href="{{ route('dean.create') }}">
             <button class="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">
                 <i class="fa-solid fa-plus fa-md" style="color: #ffffff;"></i> Add
             </button>
         </a>
         <div class="flex justify-center sm:justify-end w-full sm:w-auto">
-            <input wire:model.live="search" type="text" class="border text-black border-gray-300 rounded-md p-2 w-64" placeholder="Search..."  autofocus="">
+            <input wire:model.live="search" type="text" class="border text-black border-gray-300 rounded-md p-2 w-64" placeholder="Search..." autofocus>
         </div>
     </div>
     <div class="overflow-x-auto">
-        @if($programs->isEmpty())
+        @if($deans->isEmpty())
             <p class="text-black mt-10 text-center">No program found for matching "{{ $search }}"</p>
         @else
             <table class="table-auto border-collapse border border-gray-400 w-full text-center mb-4">
                 <thead class="bg-gray-200 text-black">
                     <tr>
                         <th class="border border-gray-400 px-4 py-2">
-                            <button wire:click="sortBy('program_abbreviation')" class="w-full h-full flex items-center justify-center">
-                                Program Abbreviation
-                                @if ($sortField == 'program_abbreviation')
+                            <button wire:click="sortBy('dean_fullname')" class="w-full h-full flex items-center justify-center">
+                                Dean Full Name
+                                @if ($sortField == 'dean_fullname')
                                     @if ($sortDirection == 'asc')
                                         &nbsp;<i class="fa-solid fa-down-long fa-xs"></i>
                                         @else
@@ -40,9 +45,9 @@
                             </button>
                         </th>
                         <th class="border border-gray-400 px-4 py-2">
-                            <button wire:click="sortBy('program_description')" class="w-full h-full flex items-center justify-center">
-                                Program Description
-                                @if ($sortField == 'program_description')
+                            <button wire:click="sortBy('dean_status')" class="w-full h-full flex items-center justify-center">
+                                Dean Status
+                                @if ($sortField == 'dean_status')
                                     @if ($sortDirection == 'asc')
                                         &nbsp;<i class="fa-solid fa-down-long fa-xs"></i>
                                         @else
@@ -52,9 +57,9 @@
                             </button>
                         </th>
                         <th class="border border-gray-400 px-4 py-2">
-                            <button wire:click="sortBy('status')" class="w-full h-full flex items-center justify-center">
-                                Program Status
-                                @if ($sortField == 'status')
+                            <button wire:click="sortBy('department_id')" class="w-full h-full flex items-center justify-center">
+                                Department Assign
+                                @if ($sortField == 'department_id')
                                     @if ($sortDirection == 'asc')
                                         &nbsp;<i class="fa-solid fa-down-long fa-xs"></i>
                                         @else
@@ -67,23 +72,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($programs as $program)
+                    @foreach ($deans as $dean)
                         <tr>
-                            <td class="text-black border border-gray-400 px-4 py-2">{{ $program->program_abbreviation }}</td>
-                            <td class="text-black border border-gray-400 px-4 py-2">{{ $program->program_description }}</td>
-                            <td class="text-black border border-gray-400 px-4 py-2">{{ $program->status }}</td>
+                            <td class="text-black border border-gray-400 px-4 py-2">{{ $dean->dean_fullname }}</td>
+                            <td class="text-black border border-gray-400 px-4 py-2">{{ $dean->dean_status }}</td>
+                            <td class="text-black border border-gray-400 px-4 py-2">{{ $dean->department->department_name }}</td>
                             <td class="text-black border border-gray-400 px-4 py-2">
-                                <a href="{{ route('program.edit', $program->id) }}">
-                                    <button class="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">
-                                        <i class="fas fa-edit fa-sm"></i> Edit
-                                    </button>
-                                </a>
+                                <div class="flex justify-center items-center space-x-2">
+                                    <a href="{{ route('dean.edit', $dean->id) }}">
+                                        <button class="bg-blue-500 text-white text-sm px-3 py-2 rounded hover:bg-red-500">
+                                            <i class="fas fa-edit fa-md"></i>
+                                        </button>
+                                    </a>
+                                    <form action="{{ route('dean.destroy', $dean->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this dean?');" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 text-white text-sm px-3 py-2 rounded hover:bg-blue-700">
+                                            <i class="fa-solid fa-trash fa-md"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $programs->links() }}
+            {{ $deans->links() }}
         @endif
     </div>
 </div>

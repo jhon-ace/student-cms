@@ -16,26 +16,13 @@
 
                                 <div class="mb-4">
                                     <label for="department_name" class="block text-gray-700 text-md font-bold mb-2">Department Name:</label>
-                                    <input type="text" name="department_name" id="department_name" value="{{ old('department_name', $department->department_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <input type="text" name="department_name" id="department_name" value="{{ old('department_name', $department->department_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autofocus>
                                     <x-input-error :messages="$errors->get('department_name')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
                                     <label for="department_description" class="block text-gray-700 text-md font-bold mb-2">Department Description:</label>
                                     <input type="text" name="department_description" id="department_description" value="{{ old('department_description', $department->department_description) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                                     <x-input-error :messages="$errors->get('department_description')" class="mt-2" />
-                                </div>
-                                <div class="mt-4">
-                                    <label for="department_dean" class="block text-gray-700 text-md font-bold mb-2">Select Dean:</label>
-                                    <select id="department_dean" name="department_dean" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="status">
-                                        @if($department->department_dean)
-                                            <option value="{{ $department->department_dean }}" selected>{{ $department->department_dean }}</option>
-                                        @else
-                                            <option value="" selected>Select dean</option>
-                                        @endif
-                                        <option value="Dean 1">Dean 1</option>
-                                        <option value="Dean 2">Dean 2</option>
-                                        <option value="No dean assigned yet">No dean assigned yet</option>
-                                    </select>
                                 </div>
                                 <div class="flex  mb-4 mt-5 justify-center">
                                         <button type="submit" class="w-80 bg-blue-500 text-white px-4 py-2 rounded-md">

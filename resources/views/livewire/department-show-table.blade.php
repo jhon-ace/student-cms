@@ -13,11 +13,11 @@
     <div class="flex justify-between mb-4">
         <a href="{{ route('department.create') }}">
             <button class="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">
-                <i class="fa-solid fa-plus fa-sm" style="color: #ffffff;"></i> Add
+                <i class="fa-solid fa-plus fa-md" style="color: #ffffff;"></i> Add
             </button>
         </a>
         <div class="flex justify-center sm:justify-end w-full sm:w-auto">
-            <input wire:model.live="search" type="text" class="border text-black border-gray-300 rounded-md p-2 w-64" placeholder="Search...">
+            <input wire:model.live="search" type="text" class="border text-black border-gray-300 rounded-md p-2 w-64" placeholder="Search..." autofocus>
         </div>
     </div>
     <div class="overflow-x-auto">
@@ -51,18 +51,6 @@
                                 @endif
                             </button>
                         </th>
-                        <th class="border border-gray-400 px-4 py-2">
-                            <button wire:click="sortBy('department_dean')" class="w-full h-full flex items-center justify-center">
-                                Department Status
-                                @if ($sortField == 'department_dean')
-                                    @if ($sortDirection == 'asc')
-                                        &nbsp;<i class="fa-solid fa-down-long fa-xs"></i>
-                                        @else
-                                        &nbsp;<i class="fa-solid fa-up-long fa-xs"></i> 
-                                    @endif
-                                @endif
-                            </button>
-                        </th>
                         <th class="border border-gray-400 px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -71,7 +59,6 @@
                         <tr>
                             <td class="text-black border border-gray-400 px-4 py-2">{{ $department->department_name }}</td>
                             <td class="text-black border border-gray-400 px-4 py-2">{{ $department->department_description }}</td>
-                            <td class="text-black border border-gray-400 px-4 py-2">{{ $department->department_dean }}</td>
                             <td class="text-black border border-gray-400 px-4 py-2">
                                 <a href="{{ route('department.edit', $department->id) }}">
                                     <button class="bg-blue-500 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">

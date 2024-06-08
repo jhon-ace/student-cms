@@ -19,12 +19,12 @@
                                 <x-caps-lock-detector />
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700 text-md font-bold mb-2">Program Abbreviation:</label>
-                                    <input type="text" name="program_abbreviation" id="name" value="{{ old('program_abbreviation') }}"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('program_abbreviation') is-invalid @enderror" required>
+                                    <input type="text" name="program_abbreviation" id="name" value="{{ old('program_abbreviation') }}"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('program_abbreviation') is-invalid @enderror" required autofocus>
                                     <x-input-error :messages="$errors->get('program_abbreviation')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
-                                    <label for="name" class="block text-gray-700 text-md font-bold mb-2">Program Description:</label>
-                                    <input type="text" name="program_description" id="name" value="{{ old('program_description') }}"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('program_description') is-invalid @enderror" required>
+                                    <label for="program_description" class="block text-gray-700 text-md font-bold mb-2">Program Description:</label>
+                                    <input type="text" name="program_description" id="program_description" value="{{ old('program_description') }}"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('program_description') is-invalid @enderror" required>
                                     <x-input-error :messages="$errors->get('program_description')" class="mt-2" />
                                 </div>
                                 <div class="mt-4">

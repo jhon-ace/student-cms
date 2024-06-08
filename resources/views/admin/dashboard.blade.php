@@ -16,24 +16,28 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
-                            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                                <i class="fa-solid fa-building-user fa-2xl" style="color: #ee2f2f;"></i>
+                        <a href="{{ route('department.index') }}">
+                            <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
+                                <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                                    <i class="fa-sharp fa-solid fa-rectangle-list fa-flip-vertical fa-2xl" style="color: #24a0ff;"></i>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-4xl">{{ \Illuminate\Support\Facades\DB::table('departments')->count('id') }}</p>
+                                    <p>Departments</p>
+                                </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-4xl">6</p>
-                                <p>Departments</p>
+                        </a>
+                        <a href="{{ route('dean.index') }}">
+                            <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
+                                <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+                                    <i class="fa-solid fa-folder-open fa-2xl" style="color: #00b825;"></i>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-4xl">{{ \Illuminate\Support\Facades\DB::table('deans')->count('id') }}</p>
+                                    <p>Deans</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
-                            <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                                <i class="fa-solid fa-folder-open fa-2xl" style="color: #00b825;"></i>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-4xl">12</p>
-                                <p>Courses</p>
-                            </div>
-                        </div>
+                        </a>
                         <div class="bg-white shadow-lg rounded-md flex items-center justify-between p-10 border-b-4 border-gray-300 dark:border-gray-600 text-black font-medium group">
                             <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                                 <i class="fa-solid fa-user-group fa-2xl" style="color: #ef8915;"></i>

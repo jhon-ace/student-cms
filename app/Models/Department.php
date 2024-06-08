@@ -16,4 +16,10 @@ class Department extends Model
         'department_dean',
     ];
 
+    // public function deans()
+    // {
+    //     return $this->hasMany(Dean::class);
+    // }
+
+    
 }

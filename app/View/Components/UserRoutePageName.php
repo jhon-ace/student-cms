@@ -38,6 +38,9 @@ class UserRoutePageName extends Component
                 'department.index' => __('Manage Department'),
                 'department.create' => __('Add Department'),
                 'department.edit' => __('Edit Department'),
+                'dean.index' => __('Manage Dean'),
+                'dean.create' => __('Add Dean'),
+                'dean.edit' => __('Edit Dean'),
             ],
             'instructor' => [
                 'instructor.dashboard' => __('Instructor Dashboard'),
