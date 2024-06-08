@@ -39,12 +39,13 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none  hover:bg-blue-800 dark:hover:bg-slate-700 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-green-500 hover:text-white pr-6">
-                <span class="inline-flex justify-center items-center ml-4">
-                <i class="fa-solid fa-building-user fa-md" style="color: #fffff;"></i>
-                </span>
-                <span class="ml-2 text-sm tracking-wide truncate">Departments</span>
-                <!-- <span class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span> -->
+                <a  href="{{ route('department.index') }}"  
+                    class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-slate-700 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-green-500 hover:text-white pr-6
+                        {{ request()->routeIs('department.index') || request()->routeIs('department.edit') || request()->routeIs('department.create') ? 'border-l-green-500 bg-slate-700 text-gray-700 dark:text-gray-200' : '' }}">
+                    <span class="inline-flex justify-center items-center ml-4">
+                        <i class="fa-sharp fa-solid fa-rectangle-list fa-flip-vertical fa-md" style="color: #fffff;"></i>
+                    </span>
+                    <span class="ml-2 text-sm tracking-wide truncate">Department</span>
                 </a>
             </li>
             <li>

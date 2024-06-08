@@ -29,10 +29,10 @@ class ProgramController extends Controller
      */
     public function store(ProgramStoreRequest $request)
     {
-        Program::create($request->validated());
+        $program = Program::create($request->validated());
            
         return redirect()->route('program.index')
-                         ->with('success', 'Program created successfully.');
+                         ->with('success',  $program->program_abbreviation . ' Program created successfully.');
     }
 
     /**
@@ -57,9 +57,14 @@ class ProgramController extends Controller
     public function update(ProgramUpdateRequest $request, Program $program)
     {
         $program->update($request->validated());
-          
-        return redirect()->route('program.index')
-                        ->with('success','Program updated successfully');
+
+        if ($program->wasChanged()) {
+            return redirect()->route('program.index')
+                            ->with('success', $program->program_name . ' Program updated successfully.');
+        } else {
+            return redirect()->route('program.index')
+                            ->with('info', 'No changes were made to the ' . $program->program_abbreviation . ' Program.');
+        }
     }
 
     /**

@@ -31,10 +31,13 @@ class UserRoutePageName extends Component
         $titles = [
             'admin' => [
                 'admin.dashboard' => __('Admin Dashboard'),
-                'admin.program.index' => __('Manage Program'),
                 'admin_profile.edit' => __('Admin Profile'),
+                'program.index' => __('Manage Program'),
                 'program.create' => __('Add Program'),
                 'program.edit' => __('Edit Program'),
+                'department.index' => __('Manage Department'),
+                'department.create' => __('Add Department'),
+                'department.edit' => __('Edit Department'),
             ],
             'instructor' => [
                 'instructor.dashboard' => __('Instructor Dashboard'),

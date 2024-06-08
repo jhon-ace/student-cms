@@ -10,12 +10,14 @@
                                 <a href="{{ route('program.index') }}"><button class="bg-blue-500 text-white px-4 py-2 rounded-md"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i> Back to list</button></a>
                             </div>
                             <form action="{{ route('program.update', $program->id) }}" method="POST" class="">
+                            <x-caps-lock-detector />
                                 @csrf
                                 @method('PUT')
 
                                 <div class="mb-4">
-                                    <label for="name" class="block text-gray-700 text-md font-bold mb-2">Program Abbreviation:</label>
-                                    <input type="text" name="program_abbreviation" id="name" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <label for="program_abbreviation" class="block text-gray-700 text-md font-bold mb-2">Program Abbreviation:</label>
+                                    <input type="text" name="program_abbreviation" id="program_abbreviation" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                    <x-input-error :messages="$errors->get('program_abbreviation')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700 text-md font-bold mb-2">Program Description:</label>

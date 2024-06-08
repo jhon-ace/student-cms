@@ -5,6 +5,7 @@ use App\Http\Middleware\checkUserType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\DepartmentController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -22,6 +23,13 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'store' => 'program.store',
         'edit' => 'program.edit',
         'update' => 'program.update'
+    ]);
+    Route::resource('department', DepartmentController::class)->names([
+        'index' => 'department.index',
+        'create' => 'department.create',
+        'store' => 'department.store',
+        'edit' => 'department.edit',
+        'update' => 'department.update'
     ]);
     
 });

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProgramUpdateRequest extends FormRequest
+class DepartmentUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,14 +31,14 @@ class ProgramUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_abbreviation' => [
+            'department_name' => [
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('programs', 'program_abbreviation')->ignore($this->program->id),
+                Rule::unique('departments', 'department_name')->ignore($this->department->id),
             ],
-            'program_description' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'string', 'max:255']
+            'department_description' => ['required', 'string', 'max:255'],
+            'department_dean' => ['required', 'string', 'max:255']
         ];
     }
 }

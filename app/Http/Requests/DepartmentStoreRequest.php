@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProgramStoreRequest extends FormRequest
+class DepartmentStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,9 +29,9 @@ class ProgramStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'program_abbreviation' => ['required', 'string', 'max:255', 'unique:programs,program_abbreviation'],
-            'program_description' => ['required', 'string', 'max:255'],
-            'status' => ['required', 'string', 'max:255']
+            'department_name' => ['required', 'string', 'max:255', 'unique:departments,department_name'],
+            'department_description' => ['required', 'string', 'max:255'],
+            'department_dean' => ['required', 'string'],
         ];
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Illuminate\Database\Eloquent\Builder;   
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-      
+        Blade::component('caps-lock-detector', \App\View\Components\CapsLockDetector::class);
 
     }
         
