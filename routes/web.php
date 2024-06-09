@@ -4,9 +4,10 @@
 use App\Http\Middleware\checkUserType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProgramController;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\DeanController;
+use App\Http\Controllers\Auth\ProgramController;
+use App\Http\Controllers\Auth\DepartmentController;
+use App\Http\Controllers\Auth\DeanController;
+use App\Http\Controllers\Auth\CourseController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,6 +40,15 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'edit' => 'dean.edit',
         'update' => 'dean.update'
     ]);
+    Route::resource('course', CourseController::class)->names([
+        'index' => 'course.index',
+        'create' => 'course.create',
+        'store' => 'course.store',
+        'edit' => 'course.edit',
+        'update' => 'course.update',
+    ]);
+    Route::delete('course', [CourseController::class, 'deleteSelected'])->name('course.deleteSelected');
+    
     
 });
 

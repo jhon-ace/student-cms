@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Dean;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class DeanController extends Controller
         $departmentName = $department ? $department->department_name : 'Not yet assigned';
     
         return redirect()->route('dean.index')
-                         ->with('success', $dean->dean_fullname . ' as dean of ' . $departmentName . 'department added successfully.');
+                         ->with('success', $dean->dean_fullname . ' as dean of ' . $departmentName . ' department added successfully.');
     }
 
     /**
@@ -69,44 +70,30 @@ class DeanController extends Controller
      * Update the specified resource in storage.
      */
 
-    // public function update(DeanUpdateRequest $request, Dean $dean)
-    // {
-    //     $dean->update($request->validated());
-
-    //     if ($dean->wasChanged()) {
-    //         return redirect()->route('dean.index')
-    //                         ->with('success', $dean->dean_fullname . ' Dean updated successfully.');
-    //     } else {
-    //         return redirect()->route('dean.index')
-    //                         ->with('info', 'No changes were made to dean ' . $dean->dean_fullname . ' .');
-    //     }
-    // }
-
     public function update(DeanUpdateRequest $request, $id)
-{
-    // Request is automatically validated by Laravel before reaching this point
+    {
 
-    $dean = Dean::findOrFail($id);
+        $dean = Dean::findOrFail($id);
 
-    if ($request->dean_fullname !== $dean->dean_fullname || $request->dean_status !== $dean->dean_status) {
-        try {
-            $dean->update($request->validated());
-            return redirect()->route('dean.index')
-                ->with('success', 'Dean '.$dean->dean_fullname . ' updated successfully.');
-        } catch (\Illuminate\Database\QueryException $e) {
-            if ($e->errorInfo[1] === 1062) { // MySQL error code for duplicate entry
+        if ($request->dean_fullname !== $dean->dean_fullname || $request->dean_status !== $dean->dean_status) {
+            try {
+                $dean->update($request->validated());
                 return redirect()->route('dean.index')
-                    ->with('error','Dean named '. $dean->dean_fullname .' exist on other department.');
-            } else {
-                // Handle other database exceptions
-                return redirect()->route('dean.index')
-                    ->with('error', 'An error occurred while updating the dean.');
+                    ->with('success', 'Dean '.$dean->dean_fullname . ' updated successfully.');
+            } catch (\Illuminate\Database\QueryException $e) {
+                if ($e->errorInfo[1] === 1062) { // MySQL error code for duplicate entry
+                    return redirect()->route('dean.index')
+                        ->with('error','Dean named '. $dean->dean_fullname .' exist on other department.');
+                } else {
+                    // Handle other database exceptions
+                    return redirect()->route('dean.index')
+                        ->with('error', 'An error occurred while updating the dean.');
+                }
             }
+        } else {
+            return redirect()->route('dean.index')
+                ->with('info', 'No changes were made to dean ' . $dean->dean_fullname . '.');
         }
-    } else {
-        return redirect()->route('dean.index')
-            ->with('info', 'No changes were made to dean ' . $dean->dean_fullname . '.');
-    }
 }
 
     // public function update(Request $request, $id)

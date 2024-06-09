@@ -42,7 +42,7 @@
                                         @endif
                                     </select>
                                     <small class="mt-2">
-                                        <span class="text-red-500">Note:</span> The department assigned can't be changed.
+                                        <span class="text-red-500">Note:</span> The department where dean {{$dean->dean_fullname}} is assigned can't be changed.
                                     </small>
 
                                 </div>

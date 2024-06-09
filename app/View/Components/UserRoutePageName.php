@@ -41,6 +41,9 @@ class UserRoutePageName extends Component
                 'dean.index' => __('Manage Dean'),
                 'dean.create' => __('Add Dean'),
                 'dean.edit' => __('Edit Dean'),
+                'course.index' => __('Manage Course'),
+                'course.create' => __('Add Course'),
+                'course.edit' => __('Edit Course'),
             ],
             'instructor' => [
                 'instructor.dashboard' => __('Instructor Dashboard'),
