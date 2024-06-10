@@ -12,5 +12,5 @@
                 successMessage.remove();
             }, 500);
         }
-    }, 3000); // 3 seconds
+    }, 5000); // 3 seconds
 </script>

@@ -13,7 +13,19 @@
                             <x-caps-lock-detector />
                                 @csrf
                                 @method('PUT')
-
+                                <div class="mt-4">
+                                    <label for="program_id" class="block text-gray-700 text-md font-bold mb-2">Program:</label>
+                                    <select id="program_id" name="program_id"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('department_id') is-invalid @enderror" required>
+                                        @if($course->program->program_abbreviation)
+                                            <option value="{{ $course->program->id }}" selected>{{ $course->program->program_description }}</option>
+                                        @else    
+                                            <option value="" selected>Select Program</option>
+                                        @endif
+                                    </select>
+                                    <small class="mt-2">
+                                        <span class="text-red-500">Note:</span> The program where the course {{$course->course_code}} - {{$course->course_name}} is assigned can't be changed.
+                                    </small>
+                                </div>
                                 <div class="mb-4">
                                     <label for="course_code" class="block text-gray-700 text-md font-bold mb-2">Course Code:</label>
                                     <input type="text" name="course_code" id="course_code" value="{{ old('course_code', $course->course_code) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autofocus>
@@ -38,23 +50,10 @@
                                         @else
                                             <option value="{{ $course->course_semester }}" selected>{{ $course->course_semester }}</option>
                                             <option value="1st Semester">1st Semester</option>
+                                            
                                         @endif
                                         <x-input-error :messages="$errors->get('course_semester')" class="mt-2" />
                                     </select>
-                                </div>
-                                <div class="mt-4">
-                                    <label for="program_id" class="block text-gray-700 text-md font-bold mb-2">Program:</label>
-                                    <select id="program_id" name="program_id"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('department_id') is-invalid @enderror" required>
-                                        @if($course->program->program_abbreviation)
-                                            <option value="{{ $course->program->id }}" selected>{{ $course->program->program_description }}</option>
-                                        @else    
-                                            <option value="" selected>Select Program</option>
-                                        @endif
-                                    </select>
-                                    <small class="mt-2">
-                                        <span class="text-red-500">Note:</span> The program where the course {{$course->course_code}} - {{$course->course_name}} is assigned can't be changed.
-                                    </small>
-
                                 </div>
                                 <div class="flex  mb-4 mt-5 justify-center">
                                         <button type="submit" class="w-80 bg-blue-500 text-white px-4 py-2 rounded-md">

@@ -13,10 +13,22 @@
                             <x-caps-lock-detector />
                                 @csrf
                                 @method('PUT')
-
+                                <div class="mt-4">
+                                    <label for="department_id" class="block text-gray-700 text-md font-bold mb-2">Department Assign</label>
+                                    <select id="department_id" name="department_id"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('department_id') is-invalid @enderror" required>
+                                        @if($program->department->department_name)
+                                            <option value="{{ $program->department->id }}" selected>{{ $program->department->department_name }}</option>
+                                        @else    
+                                            <option value="" selected>Select Dean Status</option>
+                                        @endif
+                                    </select>
+                                    <small class="mt-2">
+                                        <span class="text-red-500">Note:</span> The department where program is assigned can't be changed.
+                                    </small>
+                                </div>
                                 <div class="mb-4">
                                     <label for="program_abbreviation" class="block text-gray-700 text-md font-bold mb-2">Program Abbreviation:</label>
-                                    <input type="text" name="program_abbreviation" id="program_abbreviation" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autofocus>
+                                    <input type="text" name="program_abbreviation" id="name" value="{{ old('program_abbreviation', $program->program_abbreviation) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                                     <x-input-error :messages="$errors->get('program_abbreviation')" class="mt-2" />
                                 </div>
                                 <div class="mb-4">

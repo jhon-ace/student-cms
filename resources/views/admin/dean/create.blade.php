@@ -12,6 +12,16 @@
                             <form action="{{ route('dean.store') }}" method="POST" class="">
                             <x-caps-lock-detector />
                                 @csrf
+                                <div class="mt-4">
+                                    <label for="department_id" class="block text-gray-700 text-md font-bold mb-2">Assign Department:</label>
+                                    <select id="department_id" name="department_id" value="{{ old('department_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('department_id') is-invalid @enderror" required>
+                                        <option value="" selected>Select Department</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                                </div>
                                 <div class="mb-4">
                                     <label for="dean_fullname" class="block text-gray-700 text-md font-bold mb-2">Dean Name:</label>
                                     <input type="text" name="dean_fullname" id="dean_fullname" value="{{ old('dean_fullname') }}"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('dean_fullname') is-invalid @enderror" required autofocus>
@@ -26,17 +36,6 @@
                                     </select>
                                     <x-input-error :messages="$errors->get('dean_status')" class="mt-2" />
                                 </div>
-                                <div class="mt-4">
-                                    <label for="department_id" class="block text-gray-700 text-md font-bold mb-2">Department Assign:</label>
-                                    <select id="department_id" name="department_id" value="{{ old('department_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('department_id') is-invalid @enderror">
-                                        <option value="" selected>Select Department</option>
-                                        @foreach($departments as $department)
-                                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
-                                </div>
-
                                 <div class="flex mb-4 mt-5 justify-center">
                                     <button type="submit" class="w-80 bg-blue-500 text-white px-4 py-2 rounded-md">
                                         <i class="fa-solid fa-pen" style="color: #ffffff;"></i> Add Dean

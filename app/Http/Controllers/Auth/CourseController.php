@@ -69,7 +69,8 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        if ($request->course_code !== $course->course_code || $request->course_name!== $course->course_name) 
+        if ($request->course_code !== $course->course_code || $request->course_name!== $course->course_name 
+        || $request->course_description !== $course->course_description || $request->course_semester !== $course->course_semester) 
         {
             try {
                 $course->update($request->validated());
@@ -110,7 +111,7 @@ class CourseController extends Controller
 
         
         // Get the IDs of the selected courses
-        $selectedCourses = $request->input('selected_courses');
+        $selectedCourses = $request->input('selected');
 
         if ($selectedCourses) {
             // Delete the selected courses

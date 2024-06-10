@@ -140,11 +140,25 @@ class DeanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dean $dean)
+    public function destroy(Request $request, Dean $dean)
     {
         $dean->delete();
            
         return redirect()->route('dean.index')
                         ->with('success','Dean deleted successfully');
+    }
+
+    public function deleteSelected(Request $request)
+    {
+
+        $selectedDeans = $request->input('selected');
+
+        if ($selectedDeans) {
+            Dean::whereIn('id', $selectedDeans)->delete();
+
+            return redirect()->route('dean.index')->with('success', 'Selected deans have been deleted successfully.');
+        } else {
+            return redirect()->route('dean.index')->with('error', 'No deans selected for deletion.');
+        }
     }
 }

@@ -19,6 +19,7 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
     Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin_profile.edit');
     Route::patch('admin/profile', [ProfileController::class, 'update'])->name('admin_profile.update');
     Route::delete('admin/profile', [ProfileController::class, 'destroy'])->name('admin_profile.destroy');
+
     Route::resource('program', ProgramController::class)->names([
         'index' => 'program.index',
         'create' => 'program.create',
@@ -26,6 +27,8 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'edit' => 'program.edit',
         'update' => 'program.update'
     ]);
+    Route::delete('program', [ProgramController::class, 'deleteSelected'])->name('program.deleteSelected');
+
     Route::resource('department', DepartmentController::class)->names([
         'index' => 'department.index',
         'create' => 'department.create',
@@ -33,6 +36,8 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'edit' => 'department.edit',
         'update' => 'department.update'
     ]);
+    Route::delete('deparment', [DepartmentController::class, 'deleteSelected'])->name('department.deleteSelected');
+
     Route::resource('dean', DeanController::class)->names([
         'index' => 'dean.index',
         'create' => 'dean.create',
@@ -40,6 +45,8 @@ Route::middleware(['auth', 'checkUserType:admin'])->group(function () {
         'edit' => 'dean.edit',
         'update' => 'dean.update'
     ]);
+    Route::delete('dean', [DeanController::class, 'deleteSelected'])->name('dean.deleteSelected');
+    
     Route::resource('course', CourseController::class)->names([
         'index' => 'course.index',
         'create' => 'course.create',

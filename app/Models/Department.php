@@ -20,6 +20,10 @@ class Department extends Model
     // {
     //     return $this->hasMany(Dean::class);
     // }
+    public function programs()
+    {
+        return $this->hasMany(Program::class);
+    }
 
     
 }

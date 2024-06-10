@@ -83,7 +83,7 @@
                             </th>
                             <th class="border border-gray-400 px-4 py-2">
                                 <button wire:click="sortBy('program_id')" class="w-full h-full flex items-center justify-center">
-                                    Program
+                                    Course Program
                                     @if ($sortField == 'program_id')
                                         @if ($sortDirection == 'asc')
                                             &nbsp;<i class="fa-solid fa-down-long fa-xs"></i>
@@ -103,7 +103,7 @@
                         <tbody>
                             @foreach ($courses as $course)
                                 <tr>
-                                    <td class="text-black border border-gray-400 px-4 py-2"><input type="checkbox" name="selected_courses[]" value="{{ $course->id }}"></td>
+                                    <td class="text-black border border-gray-400 px-4 py-2"><input type="checkbox" name="selected[]" value="{{ $course->id }}"></td>
                                     <td class="text-black border border-gray-400 px-4 py-2">{{ $course->course_code }}</td>
                                     <td class="text-black border border-gray-400 px-4 py-2">{{ $course->course_name }}</td>
                                     <td class="text-black border border-gray-400 px-4 py-2">{{ $course->course_description }}</td>
@@ -129,7 +129,7 @@
 
 <script>
     document.getElementById('selectAll').addEventListener('change', function(e) {
-        const checkboxes = document.querySelectorAll('input[name="selected_courses[]"]');
+        const checkboxes = document.querySelectorAll('input[name="selected[]"]');
         checkboxes.forEach(checkbox => checkbox.checked = e.target.checked);
     });
 </script>

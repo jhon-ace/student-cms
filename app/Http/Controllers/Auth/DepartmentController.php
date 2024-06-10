@@ -78,4 +78,42 @@ class DepartmentController extends Controller
     {
         //
     }
+
+    public function deleteSelected(Request $request)
+    {
+
+        $selectedDepartments = $request->input('selected');
+
+        if ($selectedDepartments) {
+            // Fetch departments associated with deans
+            $departmentsWithDeans = \DB::table('deans')
+                ->whereIn('department_id', $selectedDepartments)
+                ->pluck('department_id')
+                ->toArray();
+
+            // Get the departments that are not associated with deans
+            $departmentsWithoutDeans = array_diff($selectedDepartments, $departmentsWithDeans);
+
+            // Attempt to delete departments without deans
+            try {
+                if (!empty($departmentsWithoutDeans)) {
+                    Department::whereIn('id', $departmentsWithoutDeans)->delete();
+                    $message = 'Selected department/s  have been deleted successfully.';
+                }
+               
+                if (!empty($departmentsWithDeans)) {
+                    $message .= ' However, the following departments could not be deleted because they are associated with deans: ' 
+                        . implode(', ', Department::whereIn('id', $departmentsWithDeans)->pluck('department_name')->toArray()) . '.';
+                }
+
+                return redirect()->route('department.index')->with('success', $message);
+            } catch (\Exception $e) {
+                return redirect()->route('department.index')->with('error', 'The following departments could not be deleted because they are associated with deans: ' 
+                . implode(', ', Department::whereIn('id', $departmentsWithDeans)->pluck('department_name')->toArray()) . '.');
+            }
+        } else {
+            return redirect()->route('department.index')->with('error', 'No departments selected for deletion.');
+        }
+        
+    }
 }

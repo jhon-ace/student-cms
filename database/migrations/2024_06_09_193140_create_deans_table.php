@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table) {
+        Schema::create('deans', function (Blueprint $table) {
             $table->id();
-            $table->string('program_abbreviation');
-            $table->string('program_description');
+            $table->string('dean_fullname')->unique();
+            $table->string('dean_status');
+            $table->unsignedBigInteger('department_id')->unique(); // Ensure department_id is unique
             $table->timestamps();
+
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('restrict');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programs');
+        Schema::dropIfExists('deans');
     }
 };

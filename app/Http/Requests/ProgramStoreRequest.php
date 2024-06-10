@@ -31,8 +31,13 @@ class ProgramStoreRequest extends FormRequest
         return [
             'program_abbreviation' => ['required', 'string', 'max:255'],
             'program_description' => ['required', 'string', 'max:255', 'unique:programs,program_description'],
-            'status' => ['required', 'string', 'max:255']
+            'status' => ['required', 'string', 'max:255'],
+            'department_id' => 'required|exists:departments,id',
         ];
+
+        // if ($this->input('department_id')) {
+        //     $rules['department_id'] = ['required', 'exists:departments,id'];
+        // }
     }
 
     public function messages(): array

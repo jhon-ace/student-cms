@@ -36,7 +36,9 @@ class ProgramUpdateRequest extends FormRequest
             'string', 
             'max:255', 
             Rule::unique('programs', 'program_description')->ignore($this->program->id)],
-            'status' => ['required', 'string', 'max:255']
+            'status' => ['required', 'string', 'max:255'],
+            'department_id' => ['sometimes', 'required', 'exists:departments,id'],
+
         ];
     }
 
